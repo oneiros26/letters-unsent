@@ -1,42 +1,20 @@
-# letters-unsent
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/oneiros26/letters-unsent">
+    <img src="letters-unsent/src/assets/imgs/love_letter_v1-2.png" alt="Logo" width="80" height="80">
+  </a>
 
-This template should help get you started developing with Vue 3 in Vite.
+<h3 align="center">Letters Unsent</h3>
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+  <p align="center">
+    Letters Unsent is a relaxing idle game about sending letters, inspired by a japanese anime Violet Evergarden.
+    <br />
+    <br />
+    <a href="https://www.imdb.com/title/tt7078180/">Violet Evergarden</a>
+    &middot;
+    <a href="https://github.com/oneiros26/letters-unsent/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    &middot;
+    <a href="https://github.com/oneiros26/letters-unsent/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
