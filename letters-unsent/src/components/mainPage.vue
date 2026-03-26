@@ -1,14 +1,16 @@
 <template>
   <main>
     <LoveShop />
+
     <CenterBar />
+
     <MoneyShop />
   </main>
 </template>
 
 <script lang="ts" setup>
 import LoveShop from "./loveShop.vue";
-import CenterBar from "./centerBar.vue";
+import CenterBar from "./gameView.vue";
 import MoneyShop from "./moneyShop.vue";
 </script>
 
@@ -19,5 +21,7 @@ main {
 
   display: grid;
   grid-template-columns: 2fr 5fr 2fr;
+
+  background-image: url("../assets/imgs/sky-bg-3.png");
 }
 </style>

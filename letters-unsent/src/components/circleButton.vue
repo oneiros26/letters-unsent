@@ -1,36 +1,43 @@
 <template>
-  <button>
-    <i
-      class="fa-2x fa-solid"
-      :class="icon"
-      :style="{ '--hover-color': color }"
-    ></i>
+  <button class="circle-btn" :style="{ '--hover-color': color }">
+    <component :is="icon" class="icon" />
   </button>
 </template>
 
 <script lang="ts" setup>
-const { color, icon } = defineProps<{ color: string; icon: string }>();
+import type { Component } from "vue";
+const { color, icon } = defineProps<{ color: string; icon: Component }>();
 </script>
 
 <style scoped>
-i {
-  width: 20px;
-  height: 20px;
-  padding: 20px;
+.circle-btn {
+  width: 60px;
+  height: 60px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  color: black;
-  border: solid black 3px;
+  /* jina barva */
+  color: #3a3532;
+
+  border: solid #3a3532 3px;
   border-radius: 50%;
+
   transition: all 150ms ease;
 }
 
-i:hover {
+.circle-btn:hover {
   cursor: pointer;
-  border: solid var(--hover-color) 3px;
+
   color: var(--hover-color);
+  border-color: var(--hover-color);
+}
+
+.icon {
+  pointer-events: none;
+
+  width: 32px;
+  height: 32px;
 }
 </style>

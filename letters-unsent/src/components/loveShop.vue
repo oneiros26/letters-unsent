@@ -28,6 +28,8 @@
 
 <style scoped>
 .love-shop {
+  position: relative;
+
   min-width: 330px;
   min-height: 50vh;
 
@@ -35,7 +37,35 @@
   flex-direction: column;
   align-items: center;
 
-  background: #ffeded;
+  border-right: solid 2px rgb(255, 182, 193);
+}
+.love-shop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: url("../assets/imgs/love-bg.png");
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0.8;
+
+  z-index: 0;
+}
+.love-shop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(255, 182, 193, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  z-index: 1;
+}
+.love-shop > * {
+  position: relative;
+  z-index: 2;
 }
 .love-shop h2 {
   padding: 16px 40px;

@@ -1,3 +1,33 @@
+@font-face {
+  font-family: "Violet Evergarden Handwriting";
+  src: url("./assets/fonts/violet-evergarden-handwriting.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Violet Evergarden Regular";
+  src: url("./assets/fonts/violet-evergarden-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+#app {
+  font-family: sans-serif;
+
+  box-sizing: border-box;
+
+  /* COLORS */
+  --red: 154, 74, 69;
+  --d-blue: 77, 97, 116;
+  --l-blue: 77, 186, 253;
+  --beige: 221, 222, 208;
+  --green: 54, 151, 117;
+  --brown: 73, 63, 64;
+}
+
 button {
   border: none;
   background: none;

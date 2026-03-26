@@ -8,8 +8,4 @@ import MainPage from "./components/MainPage.vue";
   </div>
 </template>
 
-<style>
-#app {
-  font-family: sans-serif;
-}
-</style>
+<style></style>
