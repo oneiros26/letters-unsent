@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/oneiros26/letters-unsent">
-    <img src="letters-unsent/src/assets/imgs/love_letter_v1-2.png" alt="Logo" width="80" height="80">
+    <img src="src/assets/imgs/love-letter.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Letters Unsent</h3>
