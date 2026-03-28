@@ -7,12 +7,12 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits<{
-  (e: "send-letter"): void;
-}>();
+import { useGameStore } from "@/stores/game";
+
+const game = useGameStore();
 
 function handleClick() {
-  emit("send-letter");
+  game.sendLetters();
 }
 </script>
 

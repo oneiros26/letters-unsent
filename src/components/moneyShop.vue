@@ -1,21 +1,20 @@
 <template>
   <article class="money-shop">
-    <h2>
-      <i class="delivery-icon fa-regular fa-paper-plane fa-2x"></i>
-      <i class="letter-icon fa-regular fa-envelope fa-2x"></i>
-    </h2>
+    <h2>Letters per click: {{ game.lettersPerClick }}</h2>
     <ul>
-      <li>
+      <li @click="game.buyOnFoot()">
         <img
           src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
         />
-        <p>Delivery upgrade 1</p>
+        <p>On Foot: {{ game.onFoot }}</p>
+        <p>{{ game.onFootCost }}</p>
       </li>
-      <li>
+      <li @click="game.buyBicycle()">
         <img
           src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
         />
-        <p>Delivery upgrade 2</p>
+        <p>Bicycles: {{ game.bicycle }}</p>
+        <p>{{ game.bicycleCost }}</p>
       </li>
       <li>
         <img
@@ -23,17 +22,15 @@
         />
         <p>Delivery upgrade 3</p>
       </li>
-      <li>
-        <img
-          src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-        />
-        <p>Delivery upgrade 4</p>
-      </li>
     </ul>
   </article>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts" setup>
+import { useGameStore } from "@/stores/game.ts";
+
+const game = useGameStore();
+</script>
 
 <style scoped>
 .money-shop {
@@ -78,36 +75,6 @@
 .money-shop > * {
   position: relative;
   z-index: 2;
-}
-
-.money-shop h2 {
-  padding: 16px 0;
-  margin: 40px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
-
-  background-color: #ffeba3;
-  border-radius: 20px;
-}
-
-.money-shop h2 i {
-  width: 120px;
-
-  display: flex;
-  justify-content: center;
-  transition: ease 150ms;
-}
-
-.money-shop h2 i:hover {
-  cursor: pointer;
-  color: whitesmoke;
-}
-
-.money-shop .delivery-icon {
-  border-right: gray solid 1px;
 }
 
 .money-shop ul {

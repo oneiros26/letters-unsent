@@ -3,15 +3,15 @@
     <ul>
       <li>
         <Heart class="icon" pack="filled" fill="rgb(var(--red))" />
-        <p>0</p>
+        <p>{{ game.love }}</p>
       </li>
       <li>
         <Envelope class="icon" pack="filled" fill="rgb(var(--beige))" />
-        <p>{{ lettersSent }}</p>
+        <p>{{ game.lettersSent }}</p>
       </li>
       <li>
         <Coin class="icon" pack="filled" fill="rgb(var(--green))" />
-        <p>{{ money }}</p>
+        <p>{{ game.money }}</p>
       </li>
     </ul>
   </section>
@@ -19,10 +19,9 @@
 
 <script lang="ts" setup>
 import { Heart, Envelope, Coin } from "@boxicons/vue";
-defineProps<{
-  lettersSent: number;
-  money: number;
-}>();
+import { useGameStore } from "@/stores/game";
+
+const game = useGameStore();
 </script>
 
 <style scoped>

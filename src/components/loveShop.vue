@@ -1,6 +1,5 @@
 <template>
   <article class="love-shop">
-    <h2><i class="heart-icon fa-regular fa-heart fa-2x"></i></h2>
     <ul>
       <li>
         <img
@@ -66,17 +65,6 @@
 .love-shop > * {
   position: relative;
   z-index: 2;
-}
-.love-shop h2 {
-  padding: 16px 40px;
-  margin: 40px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #ffc9c9;
-  border-radius: 20px;
 }
 .love-shop ul {
   width: 100%;
