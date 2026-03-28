@@ -1,27 +1,59 @@
 <template>
   <main>
-    <LoveShop />
+    <div class="desktop-layout">
+      <LoveShop />
+      <CenterBar />
+      <MoneyShop />
+    </div>
 
-    <CenterBar />
-
-    <MoneyShop />
+    <div class="compact-layout">
+      <CenterBar />
+      <DualShop />
+    </div>
   </main>
 </template>
 
 <script lang="ts" setup>
-import LoveShop from "./loveShop.vue";
-import CenterBar from "./gameView.vue";
-import MoneyShop from "./moneyShop.vue";
+import LoveShop from "./LoveShop.vue";
+import CenterBar from "./GameView.vue";
+import MoneyShop from "./MoneyShop.vue";
+import DualShop from "./DualShop.vue";
 </script>
 
 <style scoped>
 main {
+  background-image: url("../assets/imgs/sky-bg.png");
+  background-size: cover;
+  background-position: top;
+}
+.desktop-layout {
   width: 100%;
   height: 100vh;
 
   display: grid;
   grid-template-columns: 2fr 5fr 2fr;
+}
+.compact-layout {
+  display: none;
 
-  background-image: url("../assets/imgs/sky-bg-3.png");
+  width: 100%;
+  height: 100vh;
+
+  grid-template-columns: 2fr 1fr;
+}
+
+@media (max-width: 1250px) {
+  .compact-layout {
+    display: grid;
+  }
+
+  .desktop-layout {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .compact-layout {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

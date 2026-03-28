@@ -60,4 +60,12 @@ li .icon {
   width: 28px;
   height: auto;
 }
+
+@media (max-width: 1000px) {
+  ul {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
 </style>

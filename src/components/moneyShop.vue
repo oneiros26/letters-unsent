@@ -1,26 +1,29 @@
 <template>
   <article class="money-shop">
+    <!-- MOVE SOMEWHERE ELSE -->
     <h2>Letters per click: {{ game.lettersPerClick }}</h2>
     <ul>
+      <!-- ON HOVER ADD MORE INFO -->
+
       <li @click="game.buyOnFoot()">
-        <img
-          src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-        />
-        <p>On Foot: {{ game.onFoot }}</p>
-        <p>{{ game.onFootCost }}</p>
+        <div>
+          <img
+            src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+          />
+          <h3>On Foot</h3>
+        </div>
+        <p class="cost">{{ game.onFootCost }}<Coin class="icon" /></p>
+        <p class="amount">{{ game.onFoot }}</p>
       </li>
       <li @click="game.buyBicycle()">
-        <img
-          src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-        />
-        <p>Bicycles: {{ game.bicycle }}</p>
-        <p>{{ game.bicycleCost }}</p>
-      </li>
-      <li>
-        <img
-          src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-        />
-        <p>Delivery upgrade 3</p>
+        <div>
+          <img
+            src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+          />
+          <h3>Bicycle</h3>
+        </div>
+        <p class="cost">{{ game.bicycleCost }}<Coin class="icon" /></p>
+        <p class="amount">{{ game.bicycle }}</p>
       </li>
     </ul>
   </article>
@@ -28,6 +31,7 @@
 
 <script lang="ts" setup>
 import { useGameStore } from "@/stores/game.ts";
+import { Coin } from "@boxicons/vue";
 
 const game = useGameStore();
 </script>
@@ -35,7 +39,6 @@ const game = useGameStore();
 <style scoped>
 .money-shop {
   position: relative;
-  overflow: hidden;
 
   min-width: 330px;
   min-height: 50vh;
@@ -57,6 +60,7 @@ const game = useGameStore();
   background-position: center;
 
   opacity: 0.8;
+
   z-index: 0;
 }
 
@@ -72,28 +76,28 @@ const game = useGameStore();
   z-index: 1;
 }
 
-.money-shop > * {
-  position: relative;
-  z-index: 2;
-}
-
 .money-shop ul {
   width: 100%;
-  padding: 0;
-  margin: 0;
+
+  position: relative;
+  z-index: 2;
 
   list-style: none;
 }
 
 .money-shop li {
-  padding: 8px;
+  width: 100%;
+
+  padding: 8px 12px;
 
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
 
   background-color: #fff3c9;
   transition: ease 150ms;
+
+  font-size: 18px;
 }
 
 .money-shop li:hover {
@@ -101,8 +105,30 @@ const game = useGameStore();
   background-color: #ffeba2;
 }
 
+.money-shop div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .money-shop li img {
   height: 40px;
   display: block;
+}
+
+.cost {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cost .icon {
+  width: 16px;
+  height: auto;
+}
+
+.amount {
+  font-weight: 700;
+  font-size: 24px;
 }
 </style>

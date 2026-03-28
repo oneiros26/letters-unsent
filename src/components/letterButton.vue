@@ -35,4 +35,10 @@ img:active {
   transform: scale(0.95);
   transition: none;
 }
+
+@media (max-width: 1000px) {
+  img {
+    width: 90%;
+  }
+}
 </style>

@@ -38,6 +38,7 @@
 
   border-right: solid 2px rgb(255, 182, 193);
 }
+
 .love-shop::before {
   content: "";
   position: absolute;
@@ -51,6 +52,7 @@
 
   z-index: 0;
 }
+
 .love-shop::after {
   content: "";
   position: absolute;
@@ -62,16 +64,18 @@
 
   z-index: 1;
 }
-.love-shop > * {
-  position: relative;
-  z-index: 2;
-}
+
 .love-shop ul {
   width: 100%;
+  min-width: 0;
+
+  position: relative;
+  z-index: 2;
 
   border: black;
 }
 .love-shop li {
+  width: 100%;
   padding: 8px;
 
   display: flex;
@@ -87,5 +91,12 @@
 }
 .love-shop li img {
   height: 40px;
+}
+
+@media (max-width: 1250px) {
+  .love-shop {
+    border-left: solid 2px rgb(255, 182, 193);
+    border-right: 0;
+  }
 }
 </style>

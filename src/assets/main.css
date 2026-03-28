@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Violet Evergarden Handwriting";
-  src: url("./assets/fonts/violet-evergarden-handwriting.woff2") format("woff2");
+  src: url("./fonts/violet-evergarden-handwriting.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -8,16 +8,16 @@
 
 @font-face {
   font-family: "Violet Evergarden Regular";
-  src: url("./assets/fonts/violet-evergarden-regular.woff2") format("woff2");
+  src: url("./fonts/violet-evergarden-regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-#app {
-  font-family: sans-serif;
-
-  box-sizing: border-box;
+:root {
+  /* FONTS */
+  --font-main: "Cormorant Garamond", serif;
+  --font-accent: "Italianno", cursive;
 
   /* COLORS */
   --red: 154, 74, 69;
@@ -26,6 +26,23 @@
   --beige: 221, 222, 208;
   --green: 54, 151, 117;
   --brown: 73, 63, 64;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--font-main);
 }
 
 button {

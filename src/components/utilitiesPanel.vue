@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import CircleButton from "./circleButton.vue";
+import CircleButton from "./CircleButton.vue";
 import { Translate, Trophy, Cog, Save } from "@boxicons/vue";
 </script>
 

@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import CurrenciesBar from "./CurrenciesBar.vue";
 import LetterButton from "./LetterButton.vue";
 import UtilitiesPanel from "./UtilitiesPanel.vue";
