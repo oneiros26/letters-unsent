@@ -7,11 +7,11 @@
       </li>
       <li>
         <Envelope class="icon" pack="filled" fill="rgb(var(--beige))" />
-        <p>{{ game.lettersSent }}</p>
+        <p>{{ game.displayLettersSent }}</p>
       </li>
       <li>
         <Coin class="icon" pack="filled" fill="rgb(var(--green))" />
-        <p>{{ game.money }}</p>
+        <p>{{ game.displayMoney }}</p>
       </li>
     </ul>
   </section>
