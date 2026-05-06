@@ -10,6 +10,8 @@
       <CenterBar />
       <DualShop />
     </div>
+
+    <Popup />
   </main>
 </template>
 
@@ -18,6 +20,7 @@ import LoveShop from "./LoveShop.vue";
 import CenterBar from "./GameView.vue";
 import MoneyShop from "./MoneyShop.vue";
 import DualShop from "./DualShop.vue";
+import Popup from "./Popup.vue";
 </script>
 
 <style scoped>

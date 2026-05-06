@@ -1,24 +1,30 @@
 <template>
   <article class="money-shop">
-    <!-- MOVE SOMEWHERE ELSE -->
-    <!-- <h2>Letters per click: {{ game.lettersPerClick }}</h2> -->
+    <h2>
+      <b>{{ game.displayLettersPerClick }}</b>
+      letters per click
+    </h2>
+
     <ul>
       <!-- hover gives more info -->
 
       <li
         v-for="(u, i) in game.upgrades"
         :key="u.id"
-        @click="game.buyUpgrade(u)"
-        :class="{ disabled: !game.canBuy(u) }"
+        @click="game.buyMoneyUpgrade(u)"
+        :class="{ disabled: !game.canBuyWithMoney(u) }"
       >
         <div>
           <img :src="imgUrl(u.img)" :alt="u.name" />
           <h3>{{ u.name }}</h3>
         </div>
 
-        <p class="cost">{{ game.getCost(u) }} <Coin class="icon" /></p>
+        <p class="cost">
+          {{ game.getCost(u) }}
+          <Coin class="icon" />
+        </p>
 
-        <p class="amount">{{ u.amount }}</p>
+        <p class="amount">{{ u.level }}</p>
       </li>
     </ul>
   </article>
@@ -28,10 +34,10 @@
 import { useGameStore } from "@/stores/game.ts";
 import { Coin } from "@boxicons/vue";
 
+const game = useGameStore();
+
 const imgUrl = (file: string) =>
   new URL(`../assets/money-shop-imgs/${file}`, import.meta.url).href;
-
-const game = useGameStore();
 </script>
 
 <style scoped>
@@ -74,12 +80,26 @@ const game = useGameStore();
   z-index: 1;
 }
 
+.money-shop h2 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  margin: 24px 0;
+
+  font-size: 20px;
+  z-index: 3;
+}
+
+h2 b {
+  font-weight: 900;
+}
+
 .money-shop ul {
   width: 100%;
 
   display: flex;
   flex-direction: column;
-  gap: 16px;
 
   position: relative;
   z-index: 2;
@@ -98,21 +118,16 @@ const game = useGameStore();
 
   background-image: url("../assets/money-shop-imgs/old-paper.png");
   background-size: cover;
+
   transition: ease 150ms;
 
   font-size: 18px;
-  border-top: solid 2px rgba(138, 151, 163, 0.25);
-  border-bottom: solid 2px rgba(138, 151, 163, 0.25);
+  border: outset 2px #cba569;
 }
 
 .money-shop li:hover {
   cursor: pointer;
   /* NECO */
-}
-
-.disabled {
-  opacity: 0.5;
-  pointer-events: none;
 }
 
 .money-shop div {
@@ -146,5 +161,12 @@ const game = useGameStore();
   font-size: 24px;
 
   justify-self: flex-end;
+}
+
+/* ======*/
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

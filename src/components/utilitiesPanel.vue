@@ -12,7 +12,7 @@
       </li>
     </ul>
 
-    <aside class="save-progress">
+    <aside @click="game.saveGame" class="save-progress">
       <CircleButton :icon="Save" color="#6fa3a3" />
     </aside>
   </section>
@@ -21,6 +21,9 @@
 <script lang="ts" setup>
 import CircleButton from "./CircleButton.vue";
 import { Translate, Trophy, Cog, Save } from "@boxicons/vue";
+import { useGameStore } from "@/stores/game.ts";
+
+const game = useGameStore();
 </script>
 
 <style scoped>
