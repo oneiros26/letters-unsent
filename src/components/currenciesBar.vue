@@ -3,14 +3,14 @@
     <ul>
       <li>
         <Heart class="icon" pack="filled" fill="rgb(var(--red))" />
-        <p>{{ game.love }}</p>
+        <p>{{ game.displayLove }}</p>
       </li>
       <li>
         <Envelope class="icon" pack="filled" fill="rgb(var(--beige))" />
         <p>{{ game.displayLettersSent }}</p>
       </li>
       <li>
-        <Coin class="icon" pack="filled" fill="rgb(var(--green))" />
+        <Coin class="icon" pack="filled" fill="rgb(var(--gold))" />
         <p>{{ game.displayMoney }}</p>
       </li>
     </ul>

@@ -2,18 +2,18 @@
   <section class="utilities">
     <ul>
       <li class="language">
-        <CircleButton :icon="Translate" color="#7da2c7" />
+        <CircleButton :icon="Translate" color="rgb(var(--l-blue))" />
       </li>
       <li class="achievements">
-        <CircleButton :icon="Trophy" color="#c9a86a" />
+        <CircleButton :icon="Trophy" color="rgb(var(--gold))" />
       </li>
       <li class="settings">
-        <CircleButton :icon="Cog" color="#6e6a67" />
+        <CircleButton :icon="Cog" color="rgb(var(--beige))" />
       </li>
     </ul>
 
     <aside @click="game.saveGame" class="save-progress">
-      <CircleButton :icon="Save" color="#6fa3a3" />
+      <CircleButton :icon="Save" color="rgb(var(--green))" />
     </aside>
   </section>
 </template>

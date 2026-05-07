@@ -5,6 +5,8 @@ import { useGameStore } from "./stores/game";
 const game = useGameStore();
 
 game.loadGame();
+game.startGame();
+game.autoSave();
 </script>
 
 <template>

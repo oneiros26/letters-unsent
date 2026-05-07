@@ -2,7 +2,7 @@
   <article class="love-shop">
     <h2>
       <!-- static -->
-      <b> 69 </b>
+      <b> {{ game.displayLettersPerSecond }} </b>
       letters per second
     </h2>
 
