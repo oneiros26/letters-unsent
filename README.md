@@ -15,6 +15,6 @@
     &middot;
     <a href="https://github.com/oneiros26/letters-unsent/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
-    <a href="https://github.com/oneiros26/letters-unsent/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://sobisek-vit-66dc2-unyw9.hosting.ssps.cajthaml.eu">Try it out!</a>
   </p>
 </div>
