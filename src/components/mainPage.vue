@@ -12,6 +12,9 @@
     </div>
 
     <Popup />
+    <Achievements />
+    <Settings />
+    <AudioPopup />
   </main>
 </template>
 
@@ -21,6 +24,9 @@ import CenterBar from "./GameView.vue";
 import MoneyShop from "./MoneyShop.vue";
 import DualShop from "./DualShop.vue";
 import Popup from "./Popup.vue";
+import Achievements from "./Achievements.vue";
+import Settings from "./Settings.vue";
+import AudioPopup from "./AudioPopup.vue";
 </script>
 
 <style scoped>

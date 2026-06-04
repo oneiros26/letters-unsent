@@ -4,11 +4,15 @@
       <li class="language">
         <CircleButton :icon="Translate" color="rgb(var(--l-blue))" />
       </li>
-      <li class="achievements">
+      <li class="achievements" @click="game.toggleAchievements">
         <CircleButton :icon="Trophy" color="rgb(var(--gold))" />
       </li>
       <li class="settings">
-        <CircleButton :icon="Cog" color="rgb(var(--beige))" />
+        <CircleButton
+          :icon="Cog"
+          @click="game.toggleSettings"
+          color="rgb(var(--beige))"
+        />
       </li>
     </ul>
 

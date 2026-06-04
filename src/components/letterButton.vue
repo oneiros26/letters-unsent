@@ -1,7 +1,7 @@
 <template>
   <section class="main-letter">
     <button @click="handleClick">
-      <img src="../assets/imgs/love-letter.png" draggable="false" />
+      <img src="../assets/imgs/love-letter-4.png" draggable="false" />
     </button>
   </section>
 </template>

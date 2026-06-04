@@ -2,11 +2,24 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 
 export const useGameStore = defineStore("game", () => {
+  const audio = ref<HTMLAudioElement | null>(null);
+  const isMuted = ref(false);
+  const volume = ref(0.3);
+  const isAudioInitialized = ref(false);
   const lettersSent = ref(0);
   const money = ref(0);
   const love = ref(0);
-
   const showSavePopup = ref(false);
+  const songs = [
+    "/songs/0-the-voice-in-my-heart.mp3",
+    "/songs/1-theme-of-violet-evergarden.mp3",
+    "/songs/2-a-dolls-beginning.mp3",
+    "/songs/3-one-last-message.mp3",
+    "/songs/4-unspoken-words.mp3",
+    "/songs/5-a-simple-message.mp3",
+    "/songs/6-another-sunny-day.mp3",
+  ];
+  const currentSongIndex = ref(0);
 
   interface Upgrade {
     id: string;
@@ -24,6 +37,16 @@ export const useGameStore = defineStore("game", () => {
     lovePerSecond: number;
 
     img: string;
+  }
+
+  interface Achievement {
+    id: string;
+    name: string;
+    description: string;
+    img: string;
+    unlocked: boolean;
+
+    condition: () => boolean;
   }
 
   const upgrades = ref([
@@ -287,6 +310,144 @@ export const useGameStore = defineStore("game", () => {
     },
   ]);
 
+  const achievements = ref([
+    {
+      id: "hundredLetters",
+      name: "Busy Courier",
+      description: "Send 100 letters",
+      img: "100-letters.png",
+      unlocked: false,
+
+      condition: () => lettersSent.value >= 100,
+    },
+    {
+      id: "thousandLetters",
+      name: "Thousand Letters", // better name
+      description: "Send 1,000 letters",
+      img: "100-letters.png",
+      unlocked: false,
+
+      condition: () => lettersSent.value >= 1000,
+    },
+    {
+      id: "tenThousandLetters",
+      name: "Ten Thousand Letters", // better name
+      description: "Send 10,000 letters",
+      img: "100-letters.png",
+      unlocked: false,
+
+      condition: () => lettersSent.value >= 10000,
+    },
+    {
+      id: "hundredThousandLetters",
+      name: "Hundred Thousand Letters", // better name
+      description: "Send 100,000 letters",
+      img: "100-letters.png",
+      unlocked: false,
+
+      condition: () => lettersSent.value >= 100000,
+    },
+    {
+      id: "millionLetters",
+      name: "Million Letters", // better name
+      description: "Send 1,000,000 letters",
+      img: "100-letters.png",
+      unlocked: false,
+
+      condition: () => lettersSent.value >= 1000000,
+    },
+    {
+      id: "hundredGuilder",
+      name: "Are we getting rich?",
+      description: "Get 100 guilder",
+      img: "100-money.png",
+      unlocked: false,
+
+      condition: () => money.value >= 100,
+    },
+    {
+      id: "thousandGuilder",
+      name: "Thousand Guilder",
+      description: "Get 1,000 guilder",
+      img: "100-money.png",
+      unlocked: false,
+
+      condition: () => money.value >= 1000,
+    },
+    {
+      id: "tenThousandGuilder",
+      name: "Ten Thousand Guilder",
+      description: "Get 10,000 guilder",
+      img: "100-money.png",
+      unlocked: false,
+
+      condition: () => money.value >= 10000,
+    },
+    {
+      id: "hundredThousandGuilder",
+      name: "Hundred Thousand Guilder",
+      description: "Get 100,000 guilder",
+      img: "100-money.png",
+      unlocked: false,
+
+      condition: () => money.value >= 100000,
+    },
+    {
+      id: "millionGuilder",
+      name: "Million Guilder",
+      description: "Get 1,000,000 guilder",
+      img: "100-money.png",
+      unlocked: false,
+
+      condition: () => money.value >= 1000000,
+    },
+    {
+      id: "hundredLove",
+      name: "Spread the love",
+      description: "Raise love to 100",
+      img: "100-love.png",
+      unlocked: false,
+
+      condition: () => love.value >= 100,
+    },
+    {
+      id: "thousandLove",
+      name: "Thousand Love",
+      description: "Raise love to 1,000",
+      img: "100-love.png",
+      unlocked: false,
+
+      condition: () => love.value >= 1000,
+    },
+    {
+      id: "tenThousandLove",
+      name: "Ten Thousand Love",
+      description: "Raise love to 10,000",
+      img: "100-love.png",
+      unlocked: false,
+
+      condition: () => love.value >= 10000,
+    },
+    {
+      id: "hundredThousandLove",
+      name: "Hundred Thousand Love",
+      description: "Raise love to 100,000",
+      img: "100-love.png",
+      unlocked: false,
+
+      condition: () => love.value >= 100000,
+    },
+    {
+      id: "millionLove",
+      name: "Million Love",
+      description: "Raise love to 1,000,000",
+      img: "100-love.png",
+      unlocked: false,
+
+      condition: () => love.value >= 1000000,
+    },
+  ]);
+
   const getCost = (upgrade: Upgrade) => {
     return Math.floor(upgrade.baseCost * Math.pow(upgrade.inc, upgrade.level));
   };
@@ -364,6 +525,58 @@ export const useGameStore = defineStore("game", () => {
     return lovePerSecond.value.toFixed(1);
   });
 
+  function initAudio() {
+    if (isAudioInitialized.value) return;
+
+    audio.value = new Audio(songs[currentSongIndex.value]);
+
+    audio.value.loop = true;
+
+    audio.value.addEventListener("ended", () => {
+      if (!audio.value) return;
+
+      currentSongIndex.value = (currentSongIndex.value + 1) % songs.length;
+      audio.value.src = songs[currentSongIndex.value]!;
+      audio.value.volume = isMuted.value ? 0 : volume.value;
+      audio.value.play().catch((err) => console.log("Audio play failed:", err));
+    });
+    isAudioInitialized.value = true;
+  }
+
+  function userAllowedAudio(permission: boolean) {
+    if (!audio.value) initAudio();
+
+    if (permission) {
+      isMuted.value = false;
+      audio.value!.volume = volume.value;
+    } else {
+      isMuted.value = true;
+      audio.value!.volume = 0;
+    }
+
+    audio.value!.play().catch((err) => console.log("Audio play failed:", err));
+  }
+
+  function toggleMute() {
+    isMuted.value = !isMuted.value;
+    if (audio.value) {
+      audio.value.volume = isMuted.value ? 0 : volume.value;
+    }
+  }
+
+  function handleVolumeChange(newVolume: number) {
+    volume.value = newVolume;
+
+    // user posunet slider, instant unmute
+    if (newVolume > 0 && isMuted.value) {
+      isMuted.value = false;
+    }
+
+    if (audio.value) {
+      audio.value.volume = isMuted.value ? 0 : newVolume;
+    }
+  }
+
   // herni logika
   function buyMoneyUpgrade(upgrade: Upgrade) {
     const cost = getCost(upgrade);
@@ -371,6 +584,8 @@ export const useGameStore = defineStore("game", () => {
 
     money.value -= cost;
     upgrade.level++;
+
+    checkAchievements();
   }
 
   function buyLoveUpgrade(upgrade: Upgrade) {
@@ -379,12 +594,16 @@ export const useGameStore = defineStore("game", () => {
 
     love.value -= cost;
     upgrade.level++;
+
+    checkAchievements();
   }
 
   function sendLetters() {
     lettersSent.value += lettersPerClick.value;
     money.value += lettersPerClick.value * moneyPerLetter.value;
     love.value += lovePerClick.value;
+
+    checkAchievements();
   }
 
   // ukladani
@@ -393,8 +612,16 @@ export const useGameStore = defineStore("game", () => {
       money: money.value,
       lettersSent: lettersSent.value,
       love: love.value,
-      upgrades: upgrades.value,
-      loveUpgrades: loveUpgrades.value,
+
+      upgrades: upgrades.value.map((u) => ({ id: u.id, level: u.level })),
+      loveUpgrades: loveUpgrades.value.map((u) => ({
+        id: u.id,
+        level: u.level,
+      })),
+      achievements: achievements.value.map((a) => ({
+        id: a.id,
+        unlocked: a.unlocked,
+      })),
 
       lastSavedAt: Date.now(),
     };
@@ -419,8 +646,18 @@ export const useGameStore = defineStore("game", () => {
     lettersSent.value = data.lettersSent ?? 0;
     love.value = data.love ?? 0;
 
-    upgrades.value = data.upgrades ?? upgrades.value;
-    loveUpgrades.value = data.loveUpgrades ?? loveUpgrades.value;
+    if (data.upgrades) {
+      upgrades.value.forEach((u) => {
+        const saved = data.upgrades.find((su: any) => su.id === u.id);
+        if (saved) u.level = saved.level;
+      });
+    }
+    if (data.loveUpgrades) {
+      loveUpgrades.value.forEach((u) => {
+        const saved = data.loveUpgrades.find((su: any) => su.id === u.id);
+        if (saved) u.level = saved.level;
+      });
+    }
 
     // uzivatel pryc
     const now = Date.now();
@@ -432,6 +669,22 @@ export const useGameStore = defineStore("game", () => {
     lettersSent.value += lettersPerSecond.value * cappedOfflineSeconds;
     love.value += lovePerSecond.value * cappedOfflineSeconds;
 
+    interface SavedAchievement {
+      id: string;
+      unlocked: boolean;
+    }
+
+    data.achievements?.forEach((savedAchievement: SavedAchievement) => {
+      const achievement = achievements.value.find(
+        (a) => a.id === savedAchievement.id,
+      );
+
+      if (achievement) {
+        achievement.unlocked = savedAchievement.unlocked;
+      }
+    });
+
+    checkAchievements();
     saveGame();
   }
 
@@ -443,6 +696,31 @@ export const useGameStore = defineStore("game", () => {
     }, 2500);
   }
 
+  // popup screeny
+  const showAchievements = ref(false);
+  const showSettings = ref(false);
+  const showAudioPopup = ref(true);
+
+  function toggleAchievements() {
+    showAchievements.value = !showAchievements.value;
+  }
+
+  function toggleSettings() {
+    showSettings.value = !showSettings.value;
+  }
+
+  function toggleAudioPopup() {
+    showAudioPopup.value = !showAudioPopup.value;
+  }
+
+  function checkAchievements() {
+    achievements.value.forEach((achievement) => {
+      if (!achievement.unlocked && achievement.condition()) {
+        achievement.unlocked = true;
+      }
+    });
+  }
+
   let lastUpdate = Date.now();
   let gameStarted = false;
 
@@ -450,6 +728,8 @@ export const useGameStore = defineStore("game", () => {
     lastUpdate = Date.now();
     if (gameStarted) return;
     gameStarted = true;
+
+    initAudio();
 
     function update() {
       const now = Date.now();
@@ -482,8 +762,11 @@ export const useGameStore = defineStore("game", () => {
     displayLove,
     displayLovePerClick,
     displayLovePerSecond,
+
+    // data
     upgrades,
     loveUpgrades,
+    achievements,
 
     // vypocty
     lettersPerClick,
@@ -507,5 +790,18 @@ export const useGameStore = defineStore("game", () => {
     // UI
     showSavePopup,
     triggerSavePopup,
+    showAchievements,
+    toggleAchievements,
+    showSettings,
+    toggleSettings,
+    showAudioPopup,
+    toggleAudioPopup,
+
+    // audio
+    isMuted,
+    volume,
+    toggleMute,
+    handleVolumeChange,
+    userAllowedAudio,
   };
 });
